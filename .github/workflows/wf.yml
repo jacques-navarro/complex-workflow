@@ -16,16 +16,14 @@ jobs:
     runs-on: windows-latest
 
     steps:
-    - name: Print date in Windows
-      run:  echo  %date%-%time%
+      - run:  echo %date%-%time%
 
   job-mac:
     needs: [job-ubuntu, job-windows]
     runs-on: macos-latest
 
     steps:
-    - name: Print date in MacOS
-      run: date
+      - run: date
 
   job-dependant:
     needs: [job-ubuntu, job-windows, job-mac]
@@ -33,8 +31,4 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: dependant-job
-      run: |
-        date
-        env
-        echo "Done!"
+      - run: date
