@@ -9,8 +9,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Print date in Ubuntu
-      run: date
+      - run: date
 
   job-windows:
     runs-on: windows-latest
