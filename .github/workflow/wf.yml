@@ -1,0 +1,40 @@
+name: Complex Workflow
+
+on:
+  push:
+    branches: [$default-branch]
+
+jobs:
+  job-ubuntu:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Print date in Ubuntu
+      run: date
+
+  job-windows:
+    runs-on: windows-latest
+
+    steps:
+    - name: Print date in Windows
+      run:  echo  %date%-%time%
+
+  job-mac:
+    needs: [job-ubuntu, job-windows]
+    runs-on: macos-latest
+
+    steps:
+    - name: Print date in MacOS
+      run: date
+
+  job-dependant:
+    needs: [job-ubuntu, job-windows, job-mac]
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: dependant-job
+      run: |
+      date
+      env
+      echo "Done!"
